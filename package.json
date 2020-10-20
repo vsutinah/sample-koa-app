@@ -1,0 +1,20 @@
+{
+  "name": "sample-koa-app",
+  "version": "1.0.0",
+  "description": "Sample Web App made using the Koa Framework",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Vincent Sutinah",
+  "license": "ISC",
+  "dependencies": {
+    "jslint": "^0.12.1",
+    "koa": "^2.13.0",
+    "koa-logger": "^3.2.1",
+    "koa-router": "^9.4.0",
+    "mongoose": "^5.10.9",
+    "nodemon": "^2.0.6",
+    "sqs-consumer": "^5.4.0"
+  }
+}
