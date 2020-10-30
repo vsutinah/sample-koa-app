@@ -1,0 +1,10 @@
+<h1><%= title %> </h1>
+
+<ul class="list-group">
+    <% for (let user of users) { %>
+        <li class="list-group-item">
+            <%= user.first_name %> <%= user.last_name %> 
+        </li>
+    <% } %>
+</ul>
+<a href="/name/new" class="btn btn-primary btn-lg">Add New User</a>

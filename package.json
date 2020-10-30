@@ -4,13 +4,16 @@
   "description": "Sample Web App made using the Koa Framework",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon app.js"
   },
   "author": "Vincent Sutinah",
   "license": "ISC",
   "dependencies": {
     "jslint": "^0.12.1",
     "koa": "^2.13.0",
+    "koa-bodyparser": "^4.3.0",
+    "koa-ejs": "^4.3.0",
+    "koa-json": "^2.0.2",
     "koa-logger": "^3.2.1",
     "koa-router": "^9.4.0",
     "mongoose": "^5.10.9",
