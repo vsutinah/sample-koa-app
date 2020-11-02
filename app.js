@@ -6,10 +6,7 @@ const Koa = require('koa'),
     mongoose = require('mongoose'),
     render = require('koa-ejs'),
     bodyParser = require('koa-bodyparser'),
-    Person = require('./models/person');
-
-// Placeholder array; replace with stuff fm Mongo DB
-const things = ['Stuff 1', 'Stuff 2', 'Stuff 3'];
+    personRouter = require('./routes/personRoutes');
 
 // Connect to MongoDB
 mongoose.connect('mongodb://localhost:27017/koaApp', {useNewUrlParser: true, useUnifiedTopology: true})
@@ -29,9 +26,6 @@ app.use(json());
 // Body Parser middleware
 app.use(bodyParser());
 
-// Add additional properties to ctx
-app.context.name = 'Vincent'; // Can access this through ctx.name 
-
 render(app, {
     root: path.join(__dirname, 'views'),
     layout: 'layout',
@@ -40,41 +34,10 @@ render(app, {
     debug: false
 });
 
-// Routes
-router.get('/name', index);
-router.get('/name/new', showName);
-router.post('/name', addName);
-
-// List of people
-async function index(ctx) {
-    const users = await Person.find();
-    await ctx.render('index', {
-        title: 'List of People', users
-    });
-}
-
-// Show addName page
-async function showName(ctx) {
-    await ctx.render('show');
-}
-
-// Add new name
-async function addName(ctx) {
-    const newPerson = new Person(ctx.request.body);
-    await newPerson.save()
-        .then(() => {
-            ctx.body = {
-                id: newPerson._id
-            };
-            console.log(ctx.body);
-        })
-        .catch((e) => {
-            console.log(e);
-        })
-}
-
 // Logging requests in console
 app.use(Logger());
+
+router.use(personRouter.routes());
 
 // Router middleware
 // Add routes and response to the OPTIONS requests
